@@ -31,7 +31,7 @@ public class LoggingAspect {
 //	}
 	
 	
-	@Before("allGetters()")
+	@Before("allCircleMethods()")
 	public void secondAdvice() {
 		System.out.println("Second Advice executed.");
 	}
@@ -39,4 +39,7 @@ public class LoggingAspect {
 	@Pointcut("execution(public String get*(..))")
 	public void allGetters() {}
 
+	@Pointcut("within(com.zheng.spring.maven.springaop.model.Circle)")
+	public void allCircleMethods() {}
+	
 }
