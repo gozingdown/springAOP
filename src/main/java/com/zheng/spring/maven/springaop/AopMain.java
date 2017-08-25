@@ -9,7 +9,12 @@ public class AopMain {
 	public static void main(String[] args) { 
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 		ShapeService shapeService = ctx.getBean("shapeService", ShapeService.class);
-		shapeService.getCircle().setName("Dummy Name");
+		try {
+			shapeService.getCircle().setName("Dummy Name");
+		} catch(RuntimeException e) {
+			
+		}
+		shapeService.getCircle().setNameAndReturn("Dummy Name");
 		System.out.println(shapeService.getCircle().getName());
 		System.out.println(shapeService.getTriangle().getName());
 	}

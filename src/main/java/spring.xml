@@ -17,7 +17,7 @@
 	</bean>
 	
 	<bean name="circle" class="com.zheng.spring.maven.springaop.model.Circle">
-		<property name="name" value="Circle name" />
+<!-- 		<property name="name" value="Circle name" /> -->
 	</bean>
 	
 	<bean name="shapeService" class="com.zheng.spring.maven.springaop.service.ShapeService" autowire="byName" />

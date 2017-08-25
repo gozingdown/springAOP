@@ -2,6 +2,9 @@ package com.zheng.spring.maven.springaop.aspect;
 
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -36,11 +39,17 @@ public class LoggingAspect {
 //		System.out.println("Advice3 run. Get Method called.");
 //	}
 	
-	@Before("args(name)")
-	public void stringArgumentMethods(String name) { // name is the actual argument, and we are also telling spring that the argument is of type String
-		System.out.println("A method that takes String arguments has been called. The value is " + name);
+//	@Before("args(name)")
+//	@After("args(name)")
+	@AfterReturning(pointcut="args(name)", returning="returnString")
+	public void stringArgumentMethods(String name, Object returnString) { // name is the actual argument, and we are also telling spring that the argument is of type String
+		System.out.println("A method that takes String arguments has been called. The arg is " + name + " and the return value is " + returnString);
 	}
 	
+	@AfterThrowing(pointcut="args(name)", throwing="ex")
+	public void exceptionAdvice(String name, RuntimeException ex) {
+		System.out.println("An exception has been thrown " + ex);
+	}
 	
 	@Before("allGetters()")
 	public void secondAdvice() {
