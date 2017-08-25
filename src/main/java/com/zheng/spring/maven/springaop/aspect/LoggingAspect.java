@@ -65,7 +65,7 @@ public class LoggingAspect {
 	public void allCircleMethods() {}
 	
 	
-	@Around("allGetters()")
+	@Around("@annotation(com.zheng.spring.maven.springaop.aspect.Loggable)")
 	public Object myAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) {
 		Object returnValue = null;//remember that you need to return the value if the function you want to put advice to returns a value
 		try {

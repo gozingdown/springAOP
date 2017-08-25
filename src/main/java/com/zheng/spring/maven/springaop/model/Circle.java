@@ -1,8 +1,11 @@
 package com.zheng.spring.maven.springaop.model;
 
+import com.zheng.spring.maven.springaop.aspect.Loggable;
+
 public class Circle {
 	private String name;
 
+	@Loggable
 	public String getName() {
 		return name;
 	}

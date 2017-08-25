@@ -1,5 +1,6 @@
 package com.zheng.spring.maven.springaop.service;
 
+import com.zheng.spring.maven.springaop.aspect.Loggable;
 import com.zheng.spring.maven.springaop.model.Circle;
 import com.zheng.spring.maven.springaop.model.Triangle;
 import javax.annotation.Resource;
