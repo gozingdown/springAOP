@@ -2,9 +2,11 @@ package com.zheng.spring.maven.springaop.aspect;
 
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -24,7 +26,7 @@ public class LoggingAspect {
 	public void loggingAdvice(JoinPoint joinPoint) {
 		System.out.println("JoinPoint: " + joinPoint.toString());
 		Circle circle = (Circle) joinPoint.getTarget();// the object
-		System.out.println(circle.getName());
+		System.out.println("loggingAdvice executed " + circle.getName());
 	}
 	
 //	// wildcard: 0 or any number of arguments
@@ -61,5 +63,20 @@ public class LoggingAspect {
 
 	@Pointcut("within(com.zheng.spring.maven.springaop.model.Circle)")
 	public void allCircleMethods() {}
+	
+	
+	@Around("allGetters()")
+	public Object myAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) {
+		Object returnValue = null;//remember that you need to return the value if the function you want to put advice to returns a value
+		try {
+			System.out.println("Before Advice");
+			returnValue = proceedingJoinPoint.proceed();
+			System.out.println("After Returning");
+		} catch (Throwable e) {
+			System.out.println("After Throwing");
+		}
+		System.out.println("After Finally");
+		return returnValue;
+	}
 	
 }
