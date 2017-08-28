@@ -79,4 +79,8 @@ public class LoggingAspect {
 		return returnValue;
 	}
 	
+	
+	public void loggingAdvice() {
+		System.out.println("Logging from the advice");
+	}
 }
